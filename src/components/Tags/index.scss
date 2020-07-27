@@ -6,12 +6,13 @@
 
   &__group {
     padding-top: $base*5;
-    padding-bottom: $base*5;
+    padding-bottom: $base*3;
     border-bottom: 1px solid $color-divider;
     display: flex;
+    align-items: center;
 
     &-title {
-      flex-basis: $base*50;
+      min-width: $base*40;
       font-size: $font-size-lg;
       line-height: $line-height-lg;
     }
@@ -21,11 +22,18 @@
       display: flex;
       flex-wrap: wrap;
     }
+
+    @media(max-width: $screen-sm){
+      flex-direction: column;
+      align-items:flex-start;
+    }
   }
 }
 
 .tag-item {
   margin-right: $base*2;
+  margin-top: $base;
+  margin-bottom: $base;
 
   &__button {
     display: block;

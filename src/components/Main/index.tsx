@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 import { ETagGroup } from '../../enums';
 import { ITag, IChannel } from '../../models';
+import { BASE_URL } from '../../consts';
 
 import { Tags } from '../Tags';
 import { Channels } from '../Channels';
@@ -88,19 +89,40 @@ const DATA_CHANNELS: IChannel[] = [
 ];
 
 export const Main: FC = () => {
+  const [channels, setChannels] = useState<IChannel[]>([]);
+  const [tags, setTags] = useState<ITag[]>([]);
   const [activeTags, setActiveTags] = useState<ITag[]>([]);
 
-  const filterData = (channelsArray: IChannel[]) =>
-    channelsArray.filter(channel =>
-      activeTags.every(activeTag => channel.tags.some(channelTag => JSON.stringify(activeTag) === JSON.stringify(channelTag)))
-    );
+  useEffect(() => {
+    fetch(`${BASE_URL}/channels/`)
+      .then(res => res.json())
+      .then(result => {
+        setChannels(result);
+      });
+  }, []);
 
-  const channels = activeTags.length ? filterData(DATA_CHANNELS) : DATA_CHANNELS;
+  useEffect(() => {
+    fetch(`${BASE_URL}/tags/`)
+      .then(res => res.json())
+      .then(result => {
+        setTags(result);
+      });
+  }, []);
+
+  const filteredData = () => {
+    return channels.filter(channel => {
+      return activeTags.every(activeTag => {
+        return channel.tags.some(channelTag => {
+          return activeTag.value === channelTag.value && activeTag.group === channelTag.group;
+        });
+      });
+    });
+  };
 
   return (
     <div className="main">
-      <Tags tags={DATA_TAGS} activeTags={activeTags} onSetActiveTags={setActiveTags} />
-      <Channels channels={channels} />
+      <Tags tags={tags} activeTags={activeTags} onSetActiveTags={setActiveTags} />
+      <Channels channels={activeTags.length ? filteredData() : channels} />
     </div>
   );
 };
