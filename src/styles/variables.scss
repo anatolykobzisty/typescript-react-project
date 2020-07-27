@@ -1,0 +1,23 @@
+@import './functions.scss';
+
+$base: 4px;
+
+$transition-duration: 0.2s;
+
+$font-size-sm: rem(15px);
+$font-size-md: rem(20px);
+$font-size-lg: rem(28px);
+$font-size-xl: rem(72px);
+
+$line-height-sm: rem(18px);
+$line-height-md: rem(30px);
+$line-height-lg: rem(36px);
+$line-height-xl: rem(84px);
+
+$color-red: #ff0000;
+$color-black: #333333;
+$color-white: #ffffff;
+$color-divider:#d5d5d5;
+
+$screen-md: 991px;
+$screen-lg: 1200px;

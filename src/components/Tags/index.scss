@@ -1,0 +1,54 @@
+@import '../../styles/variables.scss';
+
+.tags-list {
+  border-top: 1px solid $color-divider;
+  margin-bottom: $base*15;
+
+  &__group {
+    padding-top: $base*5;
+    padding-bottom: $base*5;
+    border-bottom: 1px solid $color-divider;
+    display: flex;
+
+    &-title {
+      flex-basis: $base*50;
+      font-size: $font-size-lg;
+      line-height: $line-height-lg;
+    }
+
+    &-content {
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.tag-item {
+  margin-right: $base*2;
+
+  &__button {
+    display: block;
+    padding: $base $base*3;
+    font-size: $font-size-sm;
+    line-height: $line-height-sm;
+    border: 1px solid $color-divider;
+    color: $color-black;
+    background-color: transparent;
+    border-radius: $base;
+    transition-duration: $transition-duration;
+    cursor: pointer;
+    outline: none;
+
+    &--active {
+      color: $color-white;
+      background-color: $color-red;
+      border-color: $color-red;
+    }
+
+    &:hover:not(&--active) {
+      border-color: $color-black;
+    }
+  }
+}
+

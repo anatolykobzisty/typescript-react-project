@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $base*8 $base*5;
+  color: $color-black;
+}

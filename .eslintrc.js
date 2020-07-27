@@ -5,16 +5,14 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: [
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 2020, 
+    sourceType: "module", 
+    project: './tsconfig.json',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   settings: {
     react: {
@@ -22,18 +20,20 @@ module.exports = {
       version: 'detect',
     },
   },
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    project: './tsconfig.json',
+  extends: [
+    'airbnb-typescript',
+    'airbnb/hooks',
+    "plugin:react/recommended", 
+    "plugin:@typescript-eslint/recommended", 
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended" 
+  ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'max-len': ["error", 120, { "ignoreUrls": true }],
     'react/jsx-filename-extension': 0,
     'react/jsx-props-no-spreading': 0,
     "react/prop-types": 0,

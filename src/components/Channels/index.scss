@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.channels-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    padding: $base*2 $base*2 $base*2 0;
+    width: 25%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media(max-width: $screen-lg) {
+      width: 33.3%;
+    }
+
+    @media(max-width: $screen-md) {
+      width: 50%;
+    }
+    
+    &-link {
+      font-size: $font-size-md;
+      color: $color-black;
+      text-decoration: none;
+      transition-duration: $transition-duration;
+ 
+      &:hover {
+        color:$color-red;
+      }
+    }
+  }
+  
+  &--emty {
+    padding: $base*2 0;
+  }
+}
